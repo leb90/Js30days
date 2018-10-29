@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Play Array</title>
+</head>
+
+<body>
+    <p><em>Psst: Mira la consola viejo!!</em></p>
+    <script>
+
+        const inventors = [
+            { first: 'Albert', last: 'Einstein', yearBorn: 1879, died: 1955 },
+            { first: 'Isaac', last: 'Newton', yearBorn: 1643, died: 1727 },
+            { first: 'Galileo', last: 'Galilei', yearBorn: 1564, died: 1642 },
+            { first: 'Marie', last: 'Curie', yearBorn: 1867, died: 1934 },
+            { first: 'Johannes', last: 'Kepler', yearBorn: 1571, died: 1630 },
+            { first: 'Nicolaus', last: 'Copernicus', yearBorn: 1473, died: 1543 },
+            { first: 'Max', last: 'Planck', yearBorn: 1858, died: 1947 },
+            { first: 'Katherine', last: 'Blodgett', yearBorn: 1898, died: 1979 },
+            { first: 'Ada', last: 'Lovelace', yearBorn: 1815, died: 1852 },
+            { first: 'Sarah E.', last: 'Goode', yearBorn: 1855, died: 1905 },
+            { first: 'Lise', last: 'Meitner', yearBorn: 1878, died: 1968 },
+            { first: 'Hanna', last: 'Hammarström', yearBorn: 1829, died: 1909 }
+        ];
+
+        const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
+        const fifteen = inventors.filter(inventor => (inventor.yearBorn >= 1500 && inventor.yearBorn < 1600));
+
+        console.table(fifteen);
+
+        const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+        console.log("nombres completos: ", fullNames);
+
+        const ordered = inventors.sort((a, b) => a.yearBorn > b.yearBorn ? 1 : -1);
+        console.table(ordered);
+
+        const totalYears = inventors.reduce((total, inventor) => {
+            return total + (inventor.died - inventor.yearBorn);
+        }, 0);
+
+        console.log(totalYears);
+        const oldest = inventors.sort(function (a, b) {
+            const lastInventor = a.died - a.yearBorn;
+            const nextInventor = b.died - b.yearBorn;
+            return lastInventor > nextInventor ? -1 : 1;
+        });
+        console.table(oldest);
+
+        const alpha = people.sort((last, next) => {
+            const [aLast, aFirst] = last.split(', ');
+            const [bLast, bFirst] = next.split(', ');
+            return aLast > bLast ? 1 : -1;
+        });
+        console.log(alpha);
+        const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
+
+        const transportation = data.reduce(function (obj, item) {
+            if (!obj[item]) {
+                obj[item] = 0;
+            }
+            obj[item]++;
+            return obj;
+        }, {});
+
+        console.log("cantidad veces que se repite un string :", transportation);
+
+    </script>
+</body>
+
+</html>
